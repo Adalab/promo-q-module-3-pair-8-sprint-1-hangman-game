@@ -1,6 +1,17 @@
+import React from "react";
 import "../styles/scss/main.scss";
 
+import {useState} from 'react';
+
+
 function App() {
+  const [numberOfErrors, setNumberOfErrors] = useState(0);
+  const handleIncrease = (event) => {
+    event.preventDefault();
+    setNumberOfErrors(numberOfErrors + 1);
+  }
+
+
   return (
     <div className="page">
       <header>
@@ -34,7 +45,7 @@ function App() {
             </ul>
           </div>
           <form className="form">
-            <label className="title" for="last-letter">
+            <label className="title" htmlFor="last-letter">
               Escribe una letra:
             </label>
             <input
@@ -45,9 +56,10 @@ function App() {
               name="last-letter"
               id="last-letter"
             />
+            <button onClick={handleIncrease}>Incrementar</button>
           </form>
         </section>
-        <section className="dummy error-5">
+        <section className={`dummy error-${numberOfErrors}`}>
           <span className="error-13 eye"></span>
           <span className="error-12 eye"></span>
           <span className="error-11 line"></span>
