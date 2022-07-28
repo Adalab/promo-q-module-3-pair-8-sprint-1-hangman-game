@@ -11,6 +11,12 @@ function App() {
     setNumberOfErrors(numberOfErrors + 1);
   }
 
+  const [lastLetter, setLetter] = useState('');
+  const handleCounter = (event) => {
+    setLetter(event.target.value);
+    // let regex = new RegExp("^[a-zA-Z ]+$");
+  }
+
 
   return (
     <div className="page">
@@ -53,8 +59,10 @@ function App() {
               className="form__input"
               maxlength="1"
               type="text"
-              name="last-letter"
-              id="last-letter"
+              name="lastLetter"
+              id="lastLetterr"
+              value={lastLetter}
+              onChange={handleCounter}
             />
             <button onClick={handleIncrease}>Incrementar</button>
           </form>
