@@ -1,23 +1,32 @@
 import React from "react";
 import "../styles/scss/main.scss";
 
-import {useState} from 'react';
-
+import { useState } from "react";
 
 function App() {
   const [numberOfErrors, setNumberOfErrors] = useState(0);
   const handleIncrease = (event) => {
     event.preventDefault();
     setNumberOfErrors(numberOfErrors + 1);
-  }
+  };
 
-  const [lastLetter, setLetter] = useState('');
-  const handleCounter = (event) => {
-    setLetter(event.target.value);
-    // let regex = new RegExp("^[a-zA-Z ]+$");
-  }
+  const [lastLetter, setLetter] = useState("");
+  const [warningMsj, setwarnigMsj] = useState("");
 
-
+  //  const handleCounter = (event) => {
+  //   setLetter(event.target.value);
+  const handleInput = (event) => {
+    const inputValue = event.currentTarget.value;
+    const valided = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü]{1}$/;
+    if (valided.test(inputValue)) {
+      setLetter(inputValue);
+      setwarnigMsj("");
+      // Hay que añadir más código pra que cuente las las letras
+    } else {
+      setLetter("");
+      setwarnigMsj("Debes introducir una letra válida");
+    }
+  };
   return (
     <div className="page">
       <header>
@@ -62,8 +71,9 @@ function App() {
               name="lastLetter"
               id="lastLetterr"
               value={lastLetter}
-              onChange={handleCounter}
+              onChange={handleInput}
             />
+            <p> {warningMsj} </p>
             <button onClick={handleIncrease}>Incrementar</button>
           </form>
         </section>
