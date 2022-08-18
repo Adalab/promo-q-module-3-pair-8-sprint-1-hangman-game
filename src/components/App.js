@@ -12,7 +12,15 @@ function App() {
 
   const [lastLetter, setLetter] = useState("");
   const [warningMsj, setwarnigMsj] = useState("");
+  const [word, setWord] = useState("katakroker");
+  const [letters, setLetters] = useState("");
 
+  const wordLetters = word.split("");
+  const renderSolutionLetters = () => {
+    return wordLetters.map((letters) => {
+      return <li className="letter"></li>;
+    });
+  };
   //  const handleCounter = (event) => {
   //   setLetter(event.target.value);
   const handleInput = (event) => {
@@ -36,17 +44,19 @@ function App() {
         <section>
           <div className="solution">
             <h2 className="title">Solución:</h2>
+
             <ul className="letters">
-              <li className="letter">k</li>
-              <li className="letter">a</li>
+              {renderSolutionLetters()}
+              {/* //<li className="labeletter"></li>
               <li className="letter"></li>
-              <li className="letter">a</li>
-              <li className="letter">k</li>
-              <li className="letter">r</li>
               <li className="letter"></li>
-              <li className="letter">k</li>
-              <li className="letter">e</li>
-              <li className="letter">r</li>
+              <li className="letter"></li>
+              <li className="letter"></li>
+              <li className="letter"></li>
+              <li className="letter"></li>
+              <li className="letter"></li>
+              <li className="letter"></li>
+             <li className="letter"></li>// */}
             </ul>
           </div>
           <div className="error">
